@@ -1,34 +1,20 @@
 {
-  "name": "bansos-app",
+  "name": "dana-bantuan-ktp",
   "version": "1.0.0",
-  "description": "Aplikasi Pendaftaran Bantuan Sosial dengan Notifikasi Telegram",
+  "description": "Website cek dana bantuan KTP",
   "main": "index.html",
   "scripts": {
-    "dev": "netlify dev",
-    "build": "echo 'Build completed'",
-    "deploy": "netlify deploy --prod --dir=.",
-    "serve": "serve . -p 3000",
-    "setup": "npm install"
+    "build": "echo 'No build process needed'"
   },
-  "keywords": [
-    "bansos",
-    "bantuan-sosial",
-    "telegram-bot",
-    "netlify-functions",
-    "javascript",
-    "html",
-    "css"
-  ],
-  "author": "Bansos Team",
-  "license": "MIT",
   "dependencies": {
     "node-fetch": "^2.6.7"
   },
-  "devDependencies": {
-    "netlify-cli": "^15.0.0",
-    "serve": "^14.2.1"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  }
+  "devDependencies": {},
+  "keywords": [
+    "bantuan",
+    "dana",
+    "ktp"
+  ],
+  "author": "Layanan Pemerintah",
+  "license": "MIT"
 }
